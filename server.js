@@ -17,8 +17,11 @@ const app = express();
 app.use(cors({
   origin: "*"
 }));
-
 app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+  res.send("Employee Leave API is running ✔️");
+});
 
 require("dotenv").config();
 
