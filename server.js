@@ -13,16 +13,19 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+
+app.use(cors({
+  origin: "*"
+}));
+
+app.use(bodyParser.json());
+
 require("dotenv").config();
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected ✔️"))
   .catch(err => console.log("DB Error ❌", err));
-
-
-app.use(cors());
-app.use(bodyParser.json());
 
 // REGISTER — create new user
 app.post("/register", async (req, res) => {
